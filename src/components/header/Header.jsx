@@ -1,22 +1,28 @@
 import React, { useRef } from 'react';
 import './Header.css';
-import { FaBars, FaTimes } from "react-icons/fa"
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useNavigate } from 'react-router-dom'; // Import Link component
 
 const Header = () => {
   const navRef = useRef();
+  const navigate = useNavigate();
 
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
-  }
+  };
+
+  const handleHomeClick = () => {
+    navigate('/'); 
+  };
 
   return (
     <header>
-      <h3>Healthyfi<span>Me</span></h3>
+      <h3 onClick={handleHomeClick}>Healthyfi<span>Me</span></h3>
       <nav ref={navRef}>
-        <a href="/#">Home</a>
-        <a href="/about">About</a>
-        <a href="/plan">Plan</a>
-        <a href="/register">Register</a>
+        <Link to="/">Home</Link> {/* Use Link for navigation within React */}
+        <Link to="/about">About</Link>
+        <Link to="/plan">Plan</Link>
+        <Link to="/register">Register</Link>
         <button className='nav-btn nav-close-btn' onClick={showNavbar}>
           <FaTimes />
         </button>
